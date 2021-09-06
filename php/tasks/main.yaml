@@ -1,0 +1,11 @@
+- name: make sure that the php is installed
+  apt:
+    name: "{{ php.package_list }}"
+    state: "{{php.install_state }}"
+    update_cache: yes
+- name: install all php modules listed under module_list variable
+  apt:
+    name: "{{ php.modules_list }}"
+    state: "{{ php.install_state }}"
+    update_cache: yes
+

@@ -1,0 +1,12 @@
+apache:
+  package_name: apache2
+  service_name: apache2
+  document_root: /var/www/html
+  site_home: /etc/apache2/sites-enabled
+  state: present
+  install_state: present
+  service_state: started
+website_list:
+  - website1.com
+  - website2.com
+  - website3.com    

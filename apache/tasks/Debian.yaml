@@ -1,0 +1,31 @@
+- name: make suure that apache is installed
+  apt:
+    name: "{{ apache.package_name }}"
+    state: "{{ apache.state }}"
+    update_cache: yes
+- name: make sure that the apache is running
+  service:
+    name: "{{ apache.service_name }}"
+    state: "{{ apache.service_state }}"
+- name: configure the lsit of webistes
+  template:
+    dest: "{{ apache.site_home }}/websites.conf"
+    src: website_list.j2
+  notify: restart apache
+- name: copy the index.html file /var/www/html
+  copy:
+    dest: "{{ apache.document_root }}/index.html"
+    src: index.html
+- name: make sure that the documentroot folder exists
+  file:
+    path: "/var/www/{{ item }}"
+    state: directory
+  with_items: "{{ website_lists }}"
+
+
+
+
+
+
+
+
