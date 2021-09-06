@@ -1,0 +1,14 @@
+- hosts: wordpresservers
+  remote_user: ubuntu
+  become_user: root
+  become_method: sudo
+  become: yes
+  
+  vars:  
+    website_lists:
+      - mywebsite1.com
+      - mywebsite2.com
+      - mywebsite3.com        
+  roles:
+    - apache
+    - php
